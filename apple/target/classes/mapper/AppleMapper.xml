@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baidu.mapper.AppleMapper">
+ 
+ <insert id="saveLog" parameterType="com.baidu.entity.LogEntity">
+ 	insert into logone set ip=#{ip},cityname=#{cityname},browser=#{browser},datea=#{datea}
+ </insert>
+
+
+
+ 
+ <select id="findMessage" resultType="com.baidu.entity.Time">
+SELECT  DATE_FORMAT( datea, "%H" ) time, COUNT( * )  allcount
+FROM logone l
+GROUP BY DATE_FORMAT( datea, "%H" ) 
+ </select>
+ 
+  <!-- 	SELECT
+	DATE_FORMAT(datea, " %H") time,
+	COUNT(*) allcount
+	FROM
+	(
+		SELECT
+			*
+		FROM
+			logone
+		WHERE
+			datea <'2017-06-01'
+	) log
+GROUP BY
+	DATE_FORMAT(datea, "%Y-%m-%d %H") -->
+ 
+</mapper>

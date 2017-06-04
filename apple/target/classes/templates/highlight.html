@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link href="css/landing-page.css" rel="stylesheet" />
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table>
+    <tr>
+        <td>编号</td>
+        <td>账号</td>
+        <td>密码</td>
+        <td>年龄</td>
+    </tr>
+    <tr  th:each="a : ${list}">
+      <td  th:text="${a.uid}"></td>
+      <td th:utext="${a.name}"></td>
+      <td th:text="${a.price}"></td>
+      <td th:text="${a.url}"></td>
+    </tr>
+</table>
+</body>
+</html>

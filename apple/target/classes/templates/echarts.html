@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+</head>
+<body>
+  <div id="chart" style="width:400px;height:400px;"></div>
+  
+
+<span id="fang" hidden="true" th:text="${list1}"></span>
+<span id="fang2" hidden="true" th:text="${list2}"></span>
+</body>
+
+  <script type="text/javascript">
+  //var lan=$.parseJSON('${list}');
+  //alert('${list}')
+    // 初始化图表标签
+   var lan = $("#fang").text();
+   var lan2= $("#fang2").text();
+   var x=$.parseJSON(lan);
+   var y=$.parseJSON(lan2);
+    var myChart = echarts.init(document.getElementById('chart'));
+    var options={
+    		title: {
+    	        text: '一天用户访问量',
+    	        subtext: '哼哼哈兮'
+    	    },
+    	    tooltip: {
+    	        trigger: 'axis',
+    	        axisPointer: {
+    	            type: 'cross'
+    	        }
+    	    },
+    	    toolbox: {
+    	        show: true,
+    	        feature: {
+    	            saveAsImage: {}
+    	        }
+    	    },
+    	    xAxis:  {
+    	        type: 'category',
+    	        boundaryGap: false,
+    	        data: x
+    	    },
+    	    yAxis: {
+    	        type: 'value',
+    	        axisLabel: {
+    	            formatter: '{value} 人'
+    	        },
+    	        axisPointer: {
+    	            snap: true
+    	        }
+    	    },
+    	    visualMap: {
+    	        show: false,
+    	        dimension: 0,
+    	        pieces: [{
+    	            lte: 6,
+    	            color: 'green'
+    	        }, {
+    	            gt: 6,
+    	            lte: 8,
+    	            color: 'red'
+    	        }, {
+    	            gt: 8,
+    	            lte: 14,
+    	            color: 'green'
+    	        }, {
+    	            gt: 14,
+    	            lte: 17,
+    	            color: 'red'
+    	        }, {
+    	            gt: 17,
+    	            color: 'green'
+    	        }]
+    	    },
+    	    series: [
+    	        {
+    	            name:'访问量',
+    	            type:'line',
+    	            smooth: true,
+    	            data: y,
+    	            markArea: {
+    	                data: [ ]
+    	            }
+    	        }
+    	    ]
+
+    };
+    myChart.setOption(options);
+</script>
+</html>
